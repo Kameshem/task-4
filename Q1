@@ -1,0 +1,49 @@
+class AgeNotWithinRangeException extends Exception {
+    public AgeNotWithinRangeException(String message) {
+        super(message);
+    }
+}
+
+class NameNotValidException extends Exception {
+    public NameNotValidException(String message) {
+        super(message);
+    }
+}
+
+class Student {
+    private String rollNo;
+    private String name;
+    private int age;
+    private String course;
+
+    public Student(String rollNo, String name, int age, String course) throws AgeNotWithinRangeException, NameNotValidException {
+        this.rollNo = rollNo;
+        this.course = course;
+
+        if (age < 15 || age > 21) {
+            throw new AgeNotWithinRangeException("Age should be between 15 and 21");
+        }
+        this.age = age;
+
+        if (!name.matches("[a-zA-Z]+")) {
+            throw new NameNotValidException("Name should only contain alphabets");
+        }
+        this.name = name;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            Student student1 = new Student("001", "Kamesh64", 22, "Computer Science");
+        } catch (AgeNotWithinRangeException | NameNotValidException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            Student student2 = new Student("002", "Kavitha07", 20, "Physics");
+        } catch (AgeNotWithinRangeException | NameNotValidException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
