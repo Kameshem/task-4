@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        String[] weekdays = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the day position (0-6): ");
+        int dayIndex = scanner.nextInt();
+
+        if (dayIndex >= 0 && dayIndex < weekdays.length) {
+            String dayName = weekdays[dayIndex];
+            System.out.println("The day is: " + dayName);
+        } else {
+            System.out.println("Error: Day index is out of range (0-6).");
+        }
+    }
+}
